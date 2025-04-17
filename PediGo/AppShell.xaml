@@ -4,12 +4,16 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:PediGo"
-    Shell.FlyoutBehavior="Flyout"
-    Title="PediGo">
+    xmlns:pages="clr-namespace:PediGo.Pages"
+    Shell.FlyoutBehavior="Locked"
+    Shell.FlyoutBackgroundColor="black"
+    Shell.FlyoutWidth="60"
+    Title="PediGo @VKcoders">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+        Icon="home.png"
+        ContentTemplate="{DataTemplate pages:HomePage}"
+        Route="Home" />
+ 
 </Shell>
