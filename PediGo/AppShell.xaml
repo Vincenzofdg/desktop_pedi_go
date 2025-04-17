@@ -15,5 +15,12 @@
         Icon="home.png"
         ContentTemplate="{DataTemplate pages:HomePage}"
         Route="Home" />
- 
+
+    <Shell.FlyoutFooter>
+        <Image
+            Source="logout.png"
+            HeightRequest="20"
+            WidthRequest="20"
+            Margin="0, 0, 0, 30"/>
+    </Shell.FlyoutFooter>
 </Shell>
