@@ -22,11 +22,17 @@
         ContentTemplate="{DataTemplate pages:StorePage}"
         Route="Store" />
 
+    <ShellContent
+        Title="Storage"
+        Icon="storage.png"
+        ContentTemplate="{DataTemplate pages:StoragePage}"
+        Route="Storage" />
+
     <Shell.FlyoutFooter>
         <Image
-            Source="logout.png"
-            HeightRequest="20"
-            WidthRequest="20"
-            Margin="0, 0, 0, 30"/>
+            Source="command.png"
+            HeightRequest="25"
+            WidthRequest="25"
+            Margin="0, 0, 0, 40"/>
     </Shell.FlyoutFooter>
 </Shell>
