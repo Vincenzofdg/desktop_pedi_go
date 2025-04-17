@@ -16,6 +16,12 @@
         ContentTemplate="{DataTemplate pages:HomePage}"
         Route="Home" />
 
+    <ShellContent
+        Title="Store"
+        Icon="store.png"
+        ContentTemplate="{DataTemplate pages:StorePage}"
+        Route="Store" />
+
     <Shell.FlyoutFooter>
         <Image
             Source="logout.png"
