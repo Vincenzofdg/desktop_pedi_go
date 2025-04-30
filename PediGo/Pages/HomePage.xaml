@@ -11,16 +11,6 @@
             Spacing="25"
             HorizontalOptions="Start"
             VerticalOptions="Start">
-            <Button
-                x:Name="CommandBtn"
-                Clicked="OnCounterClicked"
-                WidthRequest="100"
-                HeightRequest="100"
-                BackgroundColor="AliceBlue"
-                FontSize="22"
-                FontAttributes="Bold"
-                Text="01"
-                SemanticProperties.Hint="Open command" />
         </HorizontalStackLayout>
     </ScrollView>
 
