@@ -10,7 +10,7 @@ namespace PediGo.Data
 {
     public class SqliteServer : IAsyncDisposable
     {
-        private readonly SQLiteAsyncConnection _connection;
+        public readonly SQLiteAsyncConnection _connection;
         public SqliteServer()
         {
             var DatabasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "sqliteDB.db3");
