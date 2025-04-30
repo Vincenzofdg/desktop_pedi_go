@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using PediGo.Data;
 
 namespace PediGo
 {
@@ -21,6 +22,7 @@ namespace PediGo
     		builder.Logging.AddDebug();
 #endif
 
+            builder.Services.AddSingleton<SqliteServer>();
             return builder.Build();
         }
     }
