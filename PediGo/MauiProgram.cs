@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using PediGo.Data;
+using PediGo.Pages;
+using PediGo.ViewModels.StorePage;
 
 namespace PediGo
 {
@@ -22,7 +24,11 @@ namespace PediGo
     		builder.Logging.AddDebug();
 #endif
 
-            builder.Services.AddSingleton<SqliteServer>();
+            builder.Services
+                .AddSingleton<SqliteServer>()
+                .AddSingleton<CategoriesViewModel>()
+                .AddSingleton<StorePage>();
+
             return builder.Build();
         }
     }
