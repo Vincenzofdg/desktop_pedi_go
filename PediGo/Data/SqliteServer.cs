@@ -1,4 +1,4 @@
-﻿using PediGo.Data.Actions;
+﻿using PediGo.Data.Entities;
 using SQLite;
 
 namespace PediGo.Data

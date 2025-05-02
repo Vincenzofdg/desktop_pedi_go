@@ -1,4 +1,6 @@
-﻿namespace PediGo.Data;
+﻿using PediGo.Data.Entities;
+
+namespace PediGo.Data;
 
 public static class SeedData
 {

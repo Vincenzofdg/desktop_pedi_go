@@ -1,5 +1,7 @@
 ﻿using SQLite;
 
+namespace PediGo.Data.Entities;
+
 public class OrderItems
 {
     [PrimaryKey, AutoIncrement]

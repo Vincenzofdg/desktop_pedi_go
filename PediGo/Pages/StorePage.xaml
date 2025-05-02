@@ -2,20 +2,39 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:PediGo.ViewModels.StorePage"
-             xmlns:data="clr-namespace:PediGo.Data"
+             xmlns:data="clr-namespace:PediGo.Data.Entities"
              x:Class="PediGo.Pages.StorePage"
              x:DataType="vm:CategoriesViewModel"
              Shell.NavBarIsVisible="False">
 
     <Grid ColumnDefinitions=".75*, .25*">
-        <Grid Grid.Column="0" RowDefinitions="Auto, Auto, *" BackgroundColor="{StaticResource Gray600}">
+        <Grid Grid.Column="0" RowDefinitions="Auto, Auto, *" BackgroundColor="{StaticResource Gray600}" RowSpacing="15">
             <VerticalStackLayout Grid.Row="0">
-                <Label Text="Helo Vince"/>
-                <!--<CollectionView ItemsSource="{Binding Categories}">
+                <Label Text="Wellcome"/>
+
+                <CollectionView Grid.Row="1" ItemsSource="{Binding Categories}">
                     <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal" />
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15"/>
                     </CollectionView.ItemsLayout>
-                </CollectionView>-->
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="data:Categories">
+                            <Border
+                                Stroke="LightGray"
+                                StrokeThickness="1"
+                                BackgroundColor="White"
+                                Margin="5"
+                                Padding="10"
+                                StrokeShape="RoundRectangle 8">
+                                <Label Text="{Binding Name}" TextColor="Black"/>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+
+                </CollectionView>
+
+
             </VerticalStackLayout>
         </Grid>
         <Grid Grid.Column="1" BackgroundColor="Black">

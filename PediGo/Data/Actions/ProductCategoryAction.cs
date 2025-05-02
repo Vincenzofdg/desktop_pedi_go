@@ -1,4 +1,6 @@
-﻿namespace PediGo.Data.Actions
+﻿using PediGo.Data.Entities;
+
+namespace PediGo.Data.Actions
 
 {
     public class ProductCategoryAction : SqliteServer

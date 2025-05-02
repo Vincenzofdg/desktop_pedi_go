@@ -1,5 +1,6 @@
 ﻿using SQLite;
 
+namespace PediGo.Data.Entities;
 public class Products
 {
     [PrimaryKey, AutoIncrement]
