@@ -8,11 +8,11 @@ public static class SeedData
     {
         return
         [
-            new() { Id = 1, Name = "Beverages", Description = "" },
-            new() { Id = 2, Name = "Main Course", Description = "" },
-            new() { Id = 3, Name = "Snacks", Description = "" },
-            new() { Id = 4, Name = "Desserts", Description = "" },
-            new() { Id = 5, Name = "Fast Food", Description = "" }
+            new() { Id = 1, Name = "Beverages", Description = "", Icon = "beverages.png" },
+            new() { Id = 2, Name = "Main Course", Description = "", Icon = "main_course.png" },
+            new() { Id = 3, Name = "Snacks", Description = "", Icon = "snacks.png" },
+            new() { Id = 4, Name = "Desserts", Description = "", Icon = "desserts.png" },
+            new() { Id = 5, Name = "Fast Food", Description = "", Icon = "fast_food.png" }
         ];
     }
 

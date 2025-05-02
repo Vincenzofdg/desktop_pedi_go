@@ -24,9 +24,22 @@ namespace PediGo.ViewModels.StorePage
                 return;
             }
             _isInialized = true;
-
             IsLoading = true;
+
             Categories = await _server.GetCategories();
+            var listCategories = new List<Categories>
+            {
+                new Categories
+                {
+                    Id = 0,
+                    Name = "All",
+                    Description = "All products",
+                    Icon = "all_products.png"
+                }
+            };
+
+            listCategories.AddRange(Categories);
+            Categories = [.. listCategories];
 
             IsLoading = false;
             
