@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using PediGo.Data;
 using PediGo.Data.Actions;
 
 namespace PediGo.ViewModels.StorePage

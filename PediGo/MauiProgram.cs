@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using PediGo.Data;
+using PediGo.Data.Actions;
 using PediGo.Pages;
 using PediGo.ViewModels.StorePage;
 
@@ -26,6 +27,7 @@ namespace PediGo
 
             builder.Services
                 .AddSingleton<SqliteServer>()
+                .AddSingleton<CategoryAction>()
                 .AddSingleton<CategoriesViewModel>()
                 .AddSingleton<StorePage>();
 
