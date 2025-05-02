@@ -1,31 +1,29 @@
 using PediGo.Data.Actions;
+using PediGo.ViewModels.StorePage;
 
 namespace PediGo.Pages;
 
 public partial class StorePage : ContentPage
 {
-    private readonly ProductCategoryAction _productCategoryAction;
-    public StorePage()
+	private readonly CategoriesViewModel _categoriesViewModel;
+	public StorePage(CategoriesViewModel categoriesViewModel)
 	{
 		InitializeComponent();
-		_productCategoryAction = new ProductCategoryAction();
+		_categoriesViewModel = categoriesViewModel;
+        // Todos os elementos visuais desta página (StorePage) vão usar o CategoriesViewModel como fonte de dados.
+        BindingContext = _categoriesViewModel;
+        LoadAsyncAction();
+    }
 
-		LoadAsyncAction();
-	}
+    public async void LoadAsyncAction()
+    {
+        await _categoriesViewModel.LoadAsyncAction();
 
-	private async void LoadAsyncAction()
-	{
-		try
-		{
-            long mockedId = 1;
+    }
 
-            var productCategories = await _productCategoryAction.GetProductCategoriesById(mockedId);
-            var TEST = await _productCategoryAction.GetProductCategories();
-
-            await DisplayAlert("Erro", $"Erro ao carregar os dados: {productCategories}", "OK");
-        }
-		catch (Exception ex) {
-            await DisplayAlert("Erro", $"Erro ao carregar os dados: {ex.Message}", "OK");
-        }
-	}
+    //protected override async void OnAppearing()
+    //{
+    //	base.OnAppearing();
+    //	await _categoriesViewModel.LoadAsyncAction();
+    //}
 }

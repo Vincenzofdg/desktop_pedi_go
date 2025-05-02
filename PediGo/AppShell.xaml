@@ -10,11 +10,11 @@
     Shell.FlyoutWidth="60"
     Title="PediGo @VKcoders">
 
-    <ShellContent
+    <!--<ShellContent
         Title="Home"
         Icon="home.png"
         ContentTemplate="{DataTemplate pages:HomePage}"
-        Route="Home" />
+        Route="Home" />-->
 
     <ShellContent
         Title="Store"
