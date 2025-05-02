@@ -26,10 +26,19 @@ namespace PediGo
 #endif
 
             builder.Services
+                // Database 
                 .AddSingleton<SqliteServer>()
                 .AddSingleton<CategoryAction>()
-                .AddSingleton<CategoriesViewModel>()
-                .AddSingleton<StorePage>();
+                .AddSingleton<OrderAction>()
+                .AddSingleton<OrderItemsAction>()
+                .AddSingleton<ProductAction>()
+                .AddSingleton<ProductCategoryAction>()
+                // Pages
+                .AddSingleton<HomePage>()
+                .AddSingleton<StorePage>()
+                .AddSingleton<StorePage>()
+                // Views
+                .AddSingleton<CategoriesViewModel>();
 
             return builder.Build();
         }
