@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using PediGo.Data.Actions;
-using PediGo.Data.Entities;
 using PediGo.Models;
 
 namespace PediGo.ViewModels.StorePage
@@ -15,7 +15,8 @@ namespace PediGo.ViewModels.StorePage
         private CategoryModel[] _categories = [];
 
         // ? => can accept null values
-        private CategoriesViewModel? CategorySelected = null;
+        [ObservableProperty]
+        private CategoryModel? _selectedCategory = null;
 
         [ObservableProperty]
         private bool _isLoading;
@@ -40,8 +41,7 @@ namespace PediGo.ViewModels.StorePage
 
             var listCategories = new List<CategoryModel>
             {
-                new CategoryModel
-                {
+                new() {
                     Id = 0,
                     Name = "All",
                     Description = "All products",
@@ -52,13 +52,25 @@ namespace PediGo.ViewModels.StorePage
             listCategories.AddRange(Categories);
             Categories = [.. listCategories];
 
-
-            Debug.WriteLine(listCategories);
-
-            //CategorySelected = Categories[0];
+            SelectedCategory = Categories[1];
+            Categories[1].IsSelected = true;
 
             IsLoading = false;
-            
+        }
+
+        [RelayCommand]
+        private void HandleSelectCategoy(long categoryId)
+        {
+            if (categoryId == SelectedCategory.Id)
+                return;
+
+            var prevSelectedCategory = Categories.First(element => element.IsSelected);
+            var newSelectedCategory = Categories.First(element => element.Id == categoryId);
+
+            prevSelectedCategory.IsSelected = false;
+            newSelectedCategory.IsSelected = true;
+
+            SelectedCategory = newSelectedCategory;
         }
     }
 }

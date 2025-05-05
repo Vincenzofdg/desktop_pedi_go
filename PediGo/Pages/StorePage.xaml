@@ -32,8 +32,24 @@
                                     TextColor="Black"
                                     FontSize="14"
                                     FontAttributes="Bold"
-                                    VerticalTextAlignment="Center"/>
+                                    VerticalTextAlignment="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="true">
+                                            <Setter Property="TextColor" Value="Gray" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
                             </HorizontalStackLayout>
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="true">
+                                    <Setter Property="BackgroundColor" Value="WhiteSmoke" />
+                                </DataTrigger>
+                            </Border.Triggers>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    CommandParameter="{Binding Id}"
+                                    Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:CategoriesViewModel}}, Path=HandleSelectCategoyCommand}"/>
+                            </Border.GestureRecognizers>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
