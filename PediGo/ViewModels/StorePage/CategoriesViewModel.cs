@@ -1,6 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Diagnostics;
+using CommunityToolkit.Mvvm.ComponentModel;
 using PediGo.Data.Actions;
 using PediGo.Data.Entities;
+using PediGo.Models;
 
 namespace PediGo.ViewModels.StorePage
 {
@@ -10,7 +12,10 @@ namespace PediGo.ViewModels.StorePage
         private bool _isInialized;
 
         [ObservableProperty]
-        private Categories[] _categories = [];
+        private CategoryModel[] _categories = [];
+
+        // ? => can accept null values
+        private CategoriesViewModel? CategorySelected = null;
 
         [ObservableProperty]
         private bool _isLoading;
@@ -28,10 +33,14 @@ namespace PediGo.ViewModels.StorePage
             _isInialized = true;
             IsLoading = true;
 
-            Categories = await _server.GetCategories();
-            var listCategories = new List<Categories>
+            Categories = (await _server.GetCategories())
+                .Select(CategoryModel.FromEntity)
+                .ToArray();
+
+
+            var listCategories = new List<CategoryModel>
             {
-                new Categories
+                new CategoryModel
                 {
                     Id = 0,
                     Name = "All",
@@ -42,6 +51,11 @@ namespace PediGo.ViewModels.StorePage
 
             listCategories.AddRange(Categories);
             Categories = [.. listCategories];
+
+
+            Debug.WriteLine(listCategories);
+
+            //CategorySelected = Categories[0];
 
             IsLoading = false;
             

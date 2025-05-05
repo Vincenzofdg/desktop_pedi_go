@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:PediGo.ViewModels.StorePage"
              xmlns:data="clr-namespace:PediGo.Data.Entities"
+             xmlns:models="clr-namespace:PediGo.Models"
              x:Class="PediGo.Pages.StorePage"
              x:DataType="vm:CategoriesViewModel"
              Shell.NavBarIsVisible="False">
@@ -15,7 +16,7 @@
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="data:Categories">
+                    <DataTemplate x:DataType="models:CategoryModel">
                         <Border
                             Padding="15, 5"
                             BackgroundColor="{StaticResource Gray400}"
