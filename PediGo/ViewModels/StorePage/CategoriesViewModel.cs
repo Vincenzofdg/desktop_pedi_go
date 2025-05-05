@@ -87,8 +87,6 @@ namespace PediGo.ViewModels.StorePage
             SelectedCategory = newSelectedCategory;
             Products = targetProducts;
 
-            await Task.Delay(3000);
-
             IsLoading = false;
         }
         private async Task<Products[]> FetchProductsFromCategory(long categoryId)
