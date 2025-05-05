@@ -46,8 +46,7 @@ namespace PediGo.ViewModels.StorePage
                 .Select(CategoryModel.FromEntity)
                 .ToArray();
 
-            Products = await _productServer.GetProducts();
-
+            Products = await FetchProductsFromCategory(0);
 
             var listCategories = new List<CategoryModel>
             {
@@ -69,10 +68,13 @@ namespace PediGo.ViewModels.StorePage
         }
 
         [RelayCommand]
-        private void HandleSelectCategoy(long categoryId)
+        private async void HandleSelectCategoy(long categoryId)
         {
-            if (categoryId == SelectedCategory.Id)
+            // ? => can accept null values
+            if (categoryId == SelectedCategory?.Id)
                 return;
+
+            var targetProducts = await FetchProductsFromCategory(categoryId);
 
             var prevSelectedCategory = Categories.First(element => element.IsSelected);
             var newSelectedCategory = Categories.First(element => element.Id == categoryId);
@@ -81,6 +83,22 @@ namespace PediGo.ViewModels.StorePage
             newSelectedCategory.IsSelected = true;
 
             SelectedCategory = newSelectedCategory;
+            Products = targetProducts;
+        }
+        private async Task<Products[]> FetchProductsFromCategory(long categoryId)
+        {
+            Products[] allProducts = null;
+
+            if (categoryId == 0)
+            {
+                allProducts = await _productServer.GetProducts();
+            }
+            else
+            {
+                allProducts = await _categoryProductServer.GetProductCategoriesById(categoryId);
+            }
+
+            return allProducts;
         }
     }
 }

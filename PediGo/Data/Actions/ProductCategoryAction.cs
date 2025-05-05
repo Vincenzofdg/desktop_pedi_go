@@ -1,4 +1,5 @@
-﻿using PediGo.Data.Entities;
+﻿using Microsoft.Maui.ApplicationModel.DataTransfer;
+using PediGo.Data.Entities;
 
 namespace PediGo.Data.Actions
 
@@ -15,11 +16,17 @@ namespace PediGo.Data.Actions
             return await _connection.Table<ProductCategories>().ToArrayAsync();
         }
 
-        public async Task<ProductCategories[]> GetProductCategoriesById(long categoryId)
+        public async Task<Products[]> GetProductCategoriesById(long categoryId)
         {
-            var query = @"SELECT * FROM ProductCategories WHERE CategoryId = ?";
-            var result = await _connection.QueryAsync<ProductCategories>(query, categoryId);
-            
+            var query = @"
+                SELECT products.*
+                FROM ProductCategories relation
+                JOIN Products products ON relation.ProductId = products.Id
+                WHERE relation.CategoryId = ?;
+            ";
+
+            var result = await _connection.QueryAsync<Products>(query, categoryId);
+
             return [..result];
         }
     }

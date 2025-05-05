@@ -5,7 +5,7 @@ namespace PediGo.Data
 {
     public class SqliteServer : IAsyncDisposable
     {
-        public readonly SQLiteAsyncConnection _connection;
+        public SQLiteAsyncConnection _connection;
  
         public SqliteServer()
         {
@@ -26,8 +26,9 @@ namespace PediGo.Data
             if (firstCategory != null)
             {
                 //Debug.WriteLine(firstCategory);
-                //return;
-                await ClearDataBase();
+                //await ClearDataBase();
+                //await DeleteDatabaseAsync();
+                return;
             }
 
             var categories = SeedData.GetCategories();
@@ -38,6 +39,25 @@ namespace PediGo.Data
             await _connection.InsertAllAsync(products);
             await _connection.InsertAllAsync(productCategories);
         }
+
+        private async Task DeleteDatabaseAsync()
+        {
+            var dbPath = _connection.DatabasePath;
+
+            // Fechar a conexão antes de deletar
+            await _connection.CloseAsync();
+
+            if (File.Exists(dbPath))
+            {
+                File.Delete(dbPath);
+                Console.WriteLine("Banco de dados excluído com sucesso.");
+            }
+            else
+            {
+                Console.WriteLine("Arquivo do banco não encontrado.");
+            }
+        }
+
 
         private async Task ClearDataBase()
         {
