@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using PediGo.ViewModels.StorePage;
 
 namespace PediGo.Pages;
@@ -10,7 +11,7 @@ public partial class StorePage : ContentPage
     {
 		InitializeComponent();
         _categoriesViewModel = categoriesViewModel;
-        // Todos os elementos visuais desta página (StorePage) vão usar o CategoriesViewModel como fonte de dados.
+        // All visual elements from this screen (StorePage) will use CategoriesViewModel as a source data.
         BindingContext = _categoriesViewModel;
         LoadAsyncAction();
     }
@@ -20,9 +21,8 @@ public partial class StorePage : ContentPage
         await _categoriesViewModel.LoadAsyncAction();
     }
 
-    //protected override async void OnAppearing()
-    //{
-    //    base.OnAppearing();
-    //    await _categoriesViewModel.LoadAsyncAction();
-    //}
+    protected override async void OnAppearing()
+    {
+        Debug.WriteLine("Storage Page");
+    }
 }

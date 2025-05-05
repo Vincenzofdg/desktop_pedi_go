@@ -8,8 +8,10 @@ namespace PediGo.ViewModels.StorePage
     {
         private readonly CategoryAction _server;
         private bool _isInialized;
+
         [ObservableProperty]
-        public Categories[] _categories = [];
+        private Categories[] _categories = [];
+
         [ObservableProperty]
         private bool _isLoading;
 

@@ -9,7 +9,6 @@
 
     <Grid ColumnDefinitions=".75*, .25*">
         <Grid Grid.Column="0" RowDefinitions="Auto, Auto, *" BackgroundColor="{StaticResource Gray600}" RowSpacing="15">
-            <Label Text="Wellcome"/>
             <CollectionView Grid.Row="1" ItemsSource="{Binding Categories}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15"/>
