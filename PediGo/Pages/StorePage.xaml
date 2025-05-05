@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:PediGo.ViewModels.StorePage"
-             xmlns:data="clr-namespace:PediGo.Data.Entities"
+             xmlns:entity="clr-namespace:PediGo.Data.Entities"
              xmlns:models="clr-namespace:PediGo.Models"
              x:Class="PediGo.Pages.StorePage"
              x:DataType="vm:CategoriesViewModel"
@@ -53,13 +53,62 @@
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+            </CollectionView>
 
-
+            <CollectionView Grid.Row="2" ItemsSource="{Binding Products}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="entity:Products">
+                        <Border
+                            HeightRequest="180"
+                            BackgroundColor="{StaticResource Gray400}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 12">
+                            <HorizontalStackLayout Spacing="20">
+                                <Image
+                                    WidthRequest="200"
+                                    Aspect="AspectFill"
+                                    VerticalOptions="Fill"
+                                    HorizontalOptions="Start" 
+                                    Source="{Binding ImgUrl}"/>
+                                <VerticalStackLayout
+                                    BackgroundColor="Red"
+                                    Spacing="15"
+                                    HorizontalOptions="Fill">
+                                    <Label
+                                        Text="{Binding Name}"
+                                        TextColor="Black"
+                                        FontSize="16"
+                                        FontAttributes="Bold" />
+                                    <Label
+                                        Text="{Binding Description}"
+                                        TextColor="Black"
+                                        FontSize="14"
+                                        FontAttributes="Bold" />
+                                    <Label
+                                        Text="{Binding Qtd, StringFormat='On Storage: {0}'}"
+                                        TextColor="Black"
+                                        FontSize="14"
+                                        FontAttributes="Bold" />
+                                    <Label
+                                        Text="{Binding Price, StringFormat='R$ {0}'}"
+                                        TextColor="Black"
+                                        FontSize="14"
+                                        FontAttributes="Bold" />
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
+        
+        
+        
         <Grid Grid.Column="1" BackgroundColor="Black">
             <Label Text="Current Order Items"/>
         </Grid>
     </Grid>
-
 </ContentPage>

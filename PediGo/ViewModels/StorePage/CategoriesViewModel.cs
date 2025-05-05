@@ -1,18 +1,24 @@
-﻿using System.Diagnostics;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PediGo.Data.Actions;
+using PediGo.Data.Entities;
 using PediGo.Models;
 
 namespace PediGo.ViewModels.StorePage
 {
     public partial class CategoriesViewModel : ObservableObject
     {
-        private readonly CategoryAction _server;
+        private readonly CategoryAction _categoryServer;
+        private readonly ProductAction _productServer;
+        private readonly ProductCategoryAction _categoryProductServer;
+
         private bool _isInialized;
 
         [ObservableProperty]
         private CategoryModel[] _categories = [];
+
+        [ObservableProperty]
+        private Products[] _products = [];
 
         // ? => can accept null values
         [ObservableProperty]
@@ -21,9 +27,11 @@ namespace PediGo.ViewModels.StorePage
         [ObservableProperty]
         private bool _isLoading;
 
-        public CategoriesViewModel(CategoryAction databaseServer)
+        public CategoriesViewModel(CategoryAction categoryServer, ProductCategoryAction categoryProductServer, ProductAction productServer)
         {
-            _server = databaseServer;
+            _categoryServer = categoryServer;
+            _categoryProductServer = categoryProductServer;
+            _productServer = productServer;
         }
 
         public async ValueTask LoadAsyncAction()
@@ -34,9 +42,11 @@ namespace PediGo.ViewModels.StorePage
             _isInialized = true;
             IsLoading = true;
 
-            Categories = (await _server.GetCategories())
+            Categories = (await _categoryServer.GetCategories())
                 .Select(CategoryModel.FromEntity)
                 .ToArray();
+
+            Products = await _productServer.GetProducts();
 
 
             var listCategories = new List<CategoryModel>
@@ -52,8 +62,8 @@ namespace PediGo.ViewModels.StorePage
             listCategories.AddRange(Categories);
             Categories = [.. listCategories];
 
-            SelectedCategory = Categories[1];
-            Categories[1].IsSelected = true;
+            SelectedCategory = Categories[0];
+            Categories[0].IsSelected = true;
 
             IsLoading = false;
         }
