@@ -55,7 +55,29 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <CollectionView Grid.Row="2" ItemsSource="{Binding Products}">
+
+
+            <Grid Grid.Row="2">
+
+                <BoxView
+                    IsVisible="{Binding IsLoading}"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill"
+                    Color="{StaticResource Gray600}"/>
+                <ActivityIndicator
+                    IsRunning="{Binding IsLoading}"
+                    HeightRequest="35"
+                    WidthRequest="35"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Color="WhiteSmoke"/>
+            </Grid>
+            
+            
+            
+            
+            
+            <!--<CollectionView Grid.Row="2" ItemsSource="{Binding Products}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
                 </CollectionView.ItemsLayout>
@@ -102,7 +124,7 @@
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
+            </CollectionView>-->
         </Grid>
         
         

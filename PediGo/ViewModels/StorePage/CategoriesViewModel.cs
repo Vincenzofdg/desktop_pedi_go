@@ -74,6 +74,8 @@ namespace PediGo.ViewModels.StorePage
             if (categoryId == SelectedCategory?.Id)
                 return;
 
+            IsLoading = true;
+
             var targetProducts = await FetchProductsFromCategory(categoryId);
 
             var prevSelectedCategory = Categories.First(element => element.IsSelected);
@@ -84,6 +86,10 @@ namespace PediGo.ViewModels.StorePage
 
             SelectedCategory = newSelectedCategory;
             Products = targetProducts;
+
+            await Task.Delay(3000);
+
+            IsLoading = false;
         }
         private async Task<Products[]> FetchProductsFromCategory(long categoryId)
         {
